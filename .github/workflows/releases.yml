@@ -2,7 +2,7 @@ name: releases
 
 on:
   schedule:
-    - cron: "0/2 * * * *"
+    - cron: "*/2 * * * *"
 
 jobs:
   check-releases:
