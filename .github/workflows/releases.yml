@@ -23,8 +23,8 @@ jobs:
         run: gem install pdd
       - name: pull releases
         run: |
-          echo "action_state=yellow" >> "$GITHUB_ENV"
-      - name: create pull request
+          python3 auto-pull.py
+      - name: create ${{ env.MESSAGE }}
         run:
-          echo "${{ env.action_state }}"
+          echo "${{ env.MESSAGE }}"
 
