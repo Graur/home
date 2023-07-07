@@ -37,6 +37,7 @@ jobs:
           echo "is_exist=$(git ls-remote --exit-code --heads origin update-${{ env.eo_lib_version }} || "false")" >> "$GITHUB_ENV"
           echo "env.is_exist: ${{ env.is_exist }}"
       - name: create pull request
+        if: ${{ env.is_exist == 'false' }}
         uses: peter-evans/create-pull-request@v5
         with:
           token: ${{ secrets.TOKEN }}
@@ -47,4 +48,3 @@ jobs:
           base: master
           branch: update-${{ env.eo_lib_version }}
           delete-branch: true
-        if: ${{ env.is_exist == 'false' }}
