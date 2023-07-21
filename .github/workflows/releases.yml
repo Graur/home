@@ -2,7 +2,7 @@ name: releases
 
 on:
   schedule:
-    - cron: "0 * * * *"
+    - cron: "* * * * *"
 
 jobs:
   check-releases:
@@ -34,8 +34,9 @@ jobs:
           git_push_gpgsign: ""
       - name: Check if branch exists
         run: |
-          echo "is_exist=$(git ls-remote --exit-code --heads origin update-${{ env.eo_lib_version }} || "false")" >> "$GITHUB_ENV"
-          echo "env.is_exist: ${{ env.is_exist }}"
+          exists="$(git ls-remote --exit-code --heads origin update-${{ env.eo_lib_version }} || 'false')"
+          echo 'is_exist='$exists >> $GITHUB_ENV
+          echo "is_exist: ${{ env.is_exist }}"
       - name: create pull request
         uses: peter-evans/create-pull-request@v5
         with:
