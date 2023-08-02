@@ -1,9 +1,10 @@
 import os
+import json
 import subprocess
 
 env_file = os.getenv('GITHUB_ENV')
-with open(env_file, "a") as myfile:
-    eo_lib_version = myfile.getenv('eo_lib_version')
+env_data = json.loads(env_file)
+eo_lib_version = env_data.get('eo_lib_version')
 branch_name = "update-" + eo_lib_version
 
 command = f'git rev-parse --verify {branch_name}'
