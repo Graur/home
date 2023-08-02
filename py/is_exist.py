@@ -1,8 +1,8 @@
 import os
 import subprocess
 
-myfile = os.getenv('GITHUB_ENV')
-with open(env_file, "r") as myfile:
+env_file = os.getenv('GITHUB_ENV')
+with open(env_file, "a") as myfile:
     eo_lib_version = myfile.getenv('eo_lib_version')
 branch_name = "update-" + eo_lib_version
 
