@@ -34,12 +34,7 @@ jobs:
 #          git_push_gpgsign: ""
       - name: Check if branch exists
         run: |
-          exit_code=$( git ls-remote --exit-code --heads origin update-${{ env.eo_lib_version }} )
-          if [[ $exit_code -eq 0 ]]; then
-            echo "is_exist=true" >> $GITHUB_ENV
-          else
-            echo "is_exist=false" >> $GITHUB_ENV
-          fi
+          python3 py/is_exist.py
           echo "is_exist: ${{ env.is_exist }}"
       - name: create pull request
         uses: peter-evans/create-pull-request@v5
