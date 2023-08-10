@@ -11,5 +11,5 @@ result = subprocess.run(command, shell=True, capture_output=True)
 is_exist = result.returncode == 0
 env_file = os.getenv('GITHUB_ENV')
 with open(env_file, "a") as myfile:
-    myfile.write(f'is_exist={"true" if is_exist else "false"}\n')
+    myfile.write(f'is_exist={"true" if is_exist else "false"}')
 print(f'Added to env: {is_exist}')
